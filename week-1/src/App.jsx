@@ -1,38 +1,23 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function App() {
-    // state를 사용하는 이유 : UI를 바꾸기 위해서다!
-    // hook
-    // const [state, setState] = useState('절대값');
-    // const [count, setCount] = useState(0);
-    // const [todoList, setTodoList] = useState[[]];
+    const [obj, setObj] = useState({
+        name : 'sy',
+        age : 10
+    });
 
-    const [id, setId]= useState("");
-    const [pw, setPw]= useState("");
+    console.log(obj)
 
     return (
-        <div>
-            <p>
-                아이디 : <input 
-                        value={id} 
-                        onChange={(event)=>{setId(event.target.value)}}
-                        // 이벤트의 경우 target이 필요. (콘솔로그 + F12 참고)
-                        />
-            </p>
-            <p>
-                비밀번호 : <input type={"password"}
-                    value={pw} 
-                    onChange={(event)=>{setPw(event.target.value)}}
-                    // 이벤트의 경우 target이 필요. (콘솔로그 + F12 참고)
-                    />
-            </p>
-            <button onClick={()=>{
-                alert(`고객님이 입력하신 아이디는 ${id}이며, 비밀번호는 ${pw}입니다.`)
-                // document.querySelector('input').value = ""; // 인풋 값 초기화
-                setId(''); // 초기화
-                setPw(''); // 초기화
-                }}>로그인</button>
-        <br/>
+    <div>
+        <div>{obj.name}</div>
+        <button
+        onClick={()=>{
+            const obj2 = {...obj}; // obj를 복사를 하는데 완전히 새로운 방법으로 복사하는 방법. 주소값이 새로 할당됨.
+            // 배열이나 객체 나오면 스프레드 문법 쓸 준비 하세요.
+            obj2.name = 'shasha';
+            setObj(obj2);
+            }}>버튼</button>
     </div>) 
 }
 
