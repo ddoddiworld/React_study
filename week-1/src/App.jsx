@@ -7,17 +7,32 @@ function App() {
     // const [count, setCount] = useState(0);
     // const [todoList, setTodoList] = useState[[]];
 
-    // const [name, setName] = useState('김할아버지')
-    const [fruits, setFruits]= useState("")
+    const [id, setId]= useState("");
+    const [pw, setPw]= useState("");
 
     return (
-        <div> 과일 : <input 
-                        value={fruits} 
-                        onChange={(event)=>{setFruits(event.target.value)}}
+        <div>
+            <p>
+                아이디 : <input 
+                        value={id} 
+                        onChange={(event)=>{setId(event.target.value)}}
                         // 이벤트의 경우 target이 필요. (콘솔로그 + F12 참고)
                         />
+            </p>
+            <p>
+                비밀번호 : <input type={"password"}
+                    value={pw} 
+                    onChange={(event)=>{setPw(event.target.value)}}
+                    // 이벤트의 경우 target이 필요. (콘솔로그 + F12 참고)
+                    />
+            </p>
+            <button onClick={()=>{
+                alert(`고객님이 입력하신 아이디는 ${id}이며, 비밀번호는 ${pw}입니다.`)
+                // document.querySelector('input').value = ""; // 인풋 값 초기화
+                setId(''); // 초기화
+                setPw(''); // 초기화
+                }}>로그인</button>
         <br/>
-        {fruits}
     </div>) 
 }
 
