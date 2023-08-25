@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import "./App.css"; // css 연결
 
 function App() {
-    const [num, setNum] = useState(0);
-    // [] 안에 있는 num, setNum은 fn이다. 배열처럼 보이지만... 아님
+    // 분리 안한 css 작성 법
+    const style = {
+        color : 'green'
+    }
 
     return (
-    <div style={{margin:'50px'}}>
-        <p>{num}</p>
-        <button onClick={()=>{setNum(num-1)}}>-</button>
-        <button onClick={()=>{setNum(num+1)}}>+</button>
+    <div>
+        <ul className="vege" style={style}>
+            <li>감자</li>
+            <li>고구마</li>
+            <li>오이</li>
+            <li>가지</li>
+            <li>옥수수</li>
+        </ul>
     </div>) 
 }
 
