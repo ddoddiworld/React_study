@@ -1,29 +1,27 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
+import { useRef } from 'react';
 
 function App() {
-    const [value, setValue] = useState('');
+    const [count, setCount] = useState(0);
+    const countRef = useRef(0);
 
-    // 의존성 배열
-    // 이 배열에 값을 넣으면 그 값이 바뀔때만 useEffect를 실행한다.
+    const style = {border: '1px solid black', margin: '10px', padding: '10px'}
 
-    // clean up
-    useEffect(()=>{ // 랜더링 될때마다 실행됨
-        console.log(`hello! ${value}`)
+    const plusStateCountButtonHandler = () => {
+        setCount(count+1) // 랜더링 일어남
+    }
 
-        return () => {
-            console.log('나 사라져요...')
-        }
-    }, [value])
+    const plusRefCountButtonHandler = () => {
+        countRef.current ++;
+        console.log(countRef.current) // 랜더링 안일어남 -> 콘솔창으로 확인 가능.
+    }
 
     return (
-    <div>
-        <input
-        type="text"
-        value={value}
-        onChange={(event)=>{setValue(event.target.value)}}></input>
-    </div>
+        <>
+            <div style={style}>State 영역입니다. {count} <br/> <button onClick={plusStateCountButtonHandler}>state 증가</button></div>
+            <div style={style}>Ref 영역입니다. {countRef.current} <br/> <button onClick={plusRefCountButtonHandler}>Ref 증가</button></div>
+        </>
     )
 }
 
