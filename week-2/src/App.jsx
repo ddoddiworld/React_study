@@ -1,33 +1,28 @@
 import React from 'react'
-import {useState} from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
-    const [number, setNumber] = useState(0);
+    const [value, setValue] = useState('');
 
-    const addNum = () => {
-        // 기존 업데이트 방법
-        // setNumber(number + 1)
-        // 배치 업데이트
+    // 의존성 배열
+    // 이 배열에 값을 넣으면 그 값이 바뀔때만 useEffect를 실행한다.
 
-        // 함수형 업데이트 방법
-        setNumber((currentNumber)=>{
-            return currentNumber + 1
-        })
-        setNumber((currentNumber)=>{
-            return currentNumber + 1
-        })
-        setNumber((currentNumber)=>{
-            return currentNumber + 1
-        })
+    // clean up
+    useEffect(()=>{ // 랜더링 될때마다 실행됨
+        console.log(`hello! ${value}`)
 
-        // 랜더링이 잦다 -> 성능에 이슈가 있다는 것... 불필요한 랜더링을 피하려고 함
-    }
+        return () => {
+            console.log('나 사라져요...')
+        }
+    }, [value])
 
     return (
     <div>
-        Number : {number}
-
-        <button onClick={addNum}>누르면 카운트 추가!</button>
+        <input
+        type="text"
+        value={value}
+        onChange={(event)=>{setValue(event.target.value)}}></input>
     </div>
     )
 }
