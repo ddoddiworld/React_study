@@ -45,7 +45,7 @@ function App() {
         </div>
         {users.map((item) => (
             <div key={item.id}>{item.age} - {item.name}
-            <button onClick={()=>{clickRemoveBtn(item.id)}}>X</button>
+                <button onClick={()=>{clickRemoveBtn(item.id)}}>X</button>
             </div>
         ))}
         </>
