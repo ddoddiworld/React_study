@@ -1,21 +1,21 @@
 import React from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
+import {data} from "../shared/data"
 
-function Works() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
+function Works () {
   return (
     <div>
-      Works<br/>
-
-      {/* 버튼을 이용해서 이동하기 */}
-      <button onClick={()=>{
-        navigate('/');
-      }}>Home 이동</button>
-
-      {/* a href 랑 동일한 기능 */}
-      <Link to='/contact'>contact 이동</Link>
+    <h3>할 일 목록</h3>
+    {
+      data.map(item =>{
+        return (
+          <div key={item.id}>
+          {item.id}&nbsp;
+          <Link to={`/works/${item.id}`}>{item.todo}</Link>
+          </div>
+        )
+      })
+    }
     </div>
   )
 }
